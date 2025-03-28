@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WiFi Dev Board Project</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #eaeaea;
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #a8edea;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      color: #ffeaa7;
+      font-weight: bold;
+    }
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+  <header>
+    <h1>WiFi Dev Board</h1>
+    <p>This project showcases a WiFi-enabled development board used for IoT prototyping and wireless experiments.</p>
+  </header>
+
+  <section style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 280px;">
+      <h2>Overview</h2>
+      <p>This dev board project was centered around experimenting with ESP-based modules, including the ESP32 and NRF24L01, to create a flexible IoT development platform. I used a soldering kit to hand-assemble the components onto a custom PCB, connecting power, logic, and communication pins. This process gave me hands-on experience with electronics assembly, which really brought the project to life.</p>
+
+<p>The ESP32 handles wireless communication, sensor input, and GPIO control, while the NRF module allows for low-power wireless messaging between devices. I now have the ability to remotely trigger relays, log sensor data, and even send payloads wirelessly from tools like the Flipper Zero. Building the dev board from scratch not only taught me about hardware integration, but it also gave me a solid foundation for future embedded projects.</p>
+
+      <h2>Key Features</h2>
+      <ul>
+        <li>NRF24L01/ESP32 microcontroller</li>
+        <li>WiFi connectivity for remote control and data</li>
+        <li>WIFI and Bluetooth attacks</li>
+        <li>GPIO breakout for sensors and outputs</li>
+      </ul>
+
+      <a href="projects.html" class="back-link">← Back to Projects</a>
+    </div>
+    <div style="flex: 1; min-width: 280px; text-align: center;">
+      <img src="images/flipper.JPG" alt="WiFi Dev Board" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); margin-bottom: 1rem;">
+      <img src="images/rear.JPG" alt="WiFi Dev Board Close-Up" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+    </div>
+  </section>
+  </section>
+
+  <script>
+    const canvas = document.getElementById("matrix-canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const binary = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = new Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(15, 32, 39, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(168, 237, 234, 0.2)";
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = binary[Math.floor(Math.random() * binary.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 80);
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>

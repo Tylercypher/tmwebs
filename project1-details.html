@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NAS Project Details</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #eaeaea;
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #a8edea;
+    }
+    .project-images {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .project-images img {
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .project-images img:hover {
+      transform: scale(1.05);
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      color: #ffeaa7;
+      font-weight: bold;
+    }
+  </style>
+  <style>
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+  <header>
+    <h1>DIY NAS</h1>
+    <p>This project showcases a custom-built Network Attached Storage system using affordable products.</p>
+  </header>
+
+  <section>
+    <h2>Overview</h2>
+    <p>I built a custom NAS (Network Attached Storage) using a Raspberry Pi 5 with 8GB of RAM, paired with a Radxa Penta SATA HAT and four 1TB Crucial SSDs. The full parts list included the Pi 5 ($80), the SATA HAT ($50), an active cooler ($5), and a 5V power supply ($15). The drives were about $60 each, bringing the total to just under $400 depending on storage preference. Without the drives, the cost of the core build was only around $150, making it an affordable and flexible starting point. I went with 4TB in total to comfortably store my personal files, documents, and project work.</p>
+
+    <p>Instead of using a pre-configured solution like OpenMediaVault, I decided to set everything up manually using a lightweight Linux distro. I configured Samba for file sharing, set up SSH for secure access, and tuned the system to be as efficient as possible for my needs. It's not the fastest setup out there, but for storing files, backups, and small media, it works perfectly. There is a 2.5 gigabit Ethernet module available for the SATA HAT that can significantly increase transfer speeds, but for my current workflow, I didn’t find it necessary.</p>
+
+    <div class="project-images" style="display: flex; justify-content: center; align-items: flex-start; gap: 1.5rem;">
+  <img src="images/NAS.JPG" alt="NAS" style="width: 300px; height: auto; object-fit: cover;">
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; width: 680px; height: 400px;">
+    <img src="images/cord.png" alt="Cord" style="width: 100%; height: 100%; object-fit: cover;">
+    <img src="images/radxa.png" alt="Radxa" style="width: 100%; height: 100%; object-fit: cover;">
+    <img src="images/crucial.png" alt="Crucial" style="width: 100%; height: 100%; object-fit: cover;">
+    <img src="images/cooler.png" alt="Cooler" style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
+</div>
+</div>
+
+    <h2>Key Features</h2>
+    <ul>
+      <li>Raspberry Pi 5 with Penta SATA HAT</li>
+      <li>4-bay SSD storage with RAID-Z</li>
+      <li>OpenMediaVault dashboard</li>
+      <li>SMB, SSH</li>
+    </ul>
+
+    <a href="projects.html" class="back-link">← Back to Projects</a>
+  </section>
+  <script>
+    const canvas = document.getElementById("matrix-canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const binary = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = new Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(15, 32, 39, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(168, 237, 234, 0.2)";
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = binary[Math.floor(Math.random() * binary.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 80);
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>

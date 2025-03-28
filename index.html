@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: #eaeaea;
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #1e1e2f, #32324f);
+            color: #e3e3f1;
+            text-align: center;
+            padding: 3rem 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1.5s ease-in-out;
+            position: relative;
+        }
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+        p {
+            font-size: 1.3rem;
+            opacity: 0.85;
+        }
+        nav {
+            margin-top: 1rem;
+        }
+        nav a {
+            color: #a8edea;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ffffff;
+        }
+        #projects {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: #1a1a2e;
+            animation: fadeIn 2s ease-in-out;
+        }
+        #projects h2 {
+            color: #a8edea;
+            font-size: 2.5rem;
+        }
+        .project-card {
+            display: inline-block;
+            background: linear-gradient(135deg, #2b5876, #4e4376);
+            color: #ffffff;
+            padding: 2rem;
+            margin: 1rem;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            animation: fadeInUp 2s ease-in-out;
+            width: 250px;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(168, 237, 234, 0.3);
+        }
+        #contact {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: #121225;
+            color: #f0f0f0;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+        #contact h2 {
+            color: #c6ffdd;
+            font-size: 2.5rem;
+        }
+        #footer {
+            background: #0d0d1a;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #999;
+        }
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+  <style>
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+    <header>
+  <h1 style="font-size: 3.5rem; margin-bottom: 1rem; color: #a8edea;">Welcome!</h1>
+  <nav style="margin-top: 2rem;">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="about-profile.html">Profile</a>
+  </nav>
+</header>
+
+    <section id="intro" class="reveal" style="display: flex; justify-content: center; align-items: center; height: 70vh; text-align: center; padding: 2rem;">
+  <div>
+    <p style="font-size: 1.4rem; max-width: 700px; margin: 0 auto 1rem auto; color: #eaeaea;">
+      I'm an aspiring IT and Cybersecurity professional on a mission to explore, create, and secure technology through hands-on learning.
+    </p>
+    <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem auto; color: #cccccc;">
+      This site is my digital workspace — a place where I showcase the projects I've built, the tools I work with, and the skills I'm constantly leveling up.
+    </p>
+    <a href="projects.html" style="padding: 0.75rem 1.5rem; background-color: #ffeaa7; color: #000; border-radius: 6px; font-weight: bold; text-decoration: none;">Explore My Projects</a>
+  </div>
+</section>
+
+    
+
+    <footer id="footer">
+        &copy; 2025 Tyler Mulroony. All rights reserved.
+    </footer>
+
+    <script>
+        // Scroll-triggered animation
+        const reveals = document.querySelectorAll(".reveal");
+        window.addEventListener("scroll", () => {
+            reveals.forEach((el) => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const revealPoint = 150;
+                if (elementTop < windowHeight - revealPoint) {
+                    el.classList.add("active");
+                }
+            });
+        });
+    </script>
+  <script>
+    const canvas = document.getElementById("matrix-canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const binary = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = new Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(15, 32, 39, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(168, 237, 234, 0.2)";
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = binary[Math.floor(Math.random() * binary.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 80);
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>

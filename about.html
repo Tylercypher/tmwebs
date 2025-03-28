@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #eaeaea;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(135deg, #1e1e2f, #32324f);
+      padding: 3rem 1rem;
+      text-align: center;
+      color: #e3e3f1;
+      animation: fadeInDown 1.5s ease-in-out;
+    }
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+    nav {
+      margin-top: 1rem;
+    }
+    nav a {
+      color: #a8edea;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ffffff;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      animation: fadeInUp 2s ease-in-out;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      color: #c6ffdd;
+      margin-bottom: 1rem;
+    }
+    footer {
+      background: #0d0d1a;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #999;
+    }
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+  <header>
+    <h1>About Me</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="about-profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="section-title">Who I Am</h2>
+    <p>I'm deeply passionate about technology and cybersecurity, values that have shaped my drive and dedication throughout my career. I am known for being hardworking and trustworthy, qualities I bring to every aspect of my work. I'm actively pursuing IT certifications to enhance my skills and secure a role in IT, with a long-term vision of excelling in the cybersecurity field. Committed to continuous learning, I strive to be a reliable professional who contributes effectively in this dynamic industry.</p>
+
+    <h2 class="section-title">My Background</h2>
+    <p>Ever since I was a kid, I've been fascinated by cybersecurity. My passion really took off at DeVry University, where I immersed myself in the tech world. The field's constant evolution and deep challenges have always captivated me. Beyond the classroom, I dive into hands-on projects, from building custom PCs to experimenting with the latest cybersecurity tools. These activities aren’t just hobbies—they sharpen my skills and keep my enthusiasm for technology alive. Professionally, I've honed these skills through roles at Crate and Barrel and an apprenticeship at PC Visions, where I applied my technical knowledge in real-world settings. It’s all about being proactive, enhancing my capabilities, and thoroughly enjoying what I do.</p>
+
+    <h2 class="section-title">What Drives Me</h2>
+    <p>I’m driven by the freedom to innovate and the peace that comes with mastering my craft. My enthusiasm for technology keeps me on a constant hunt for new knowledge and skills. I’m always diving into the latest tech developments, eager to see how they can enhance my capabilities and my career in cybersecurity. This pursuit isn’t about changing the industry; it’s about personal and professional growth, ensuring that I can work creatively and effectively. Every day, I strive to excel and enjoy the process, staying true to my passion for tech.</p>
+    
+   
+  </main>
+
+  <footer>
+    &copy; 2025 Tyler Mulroony. All rights reserved.
+  </footer>
+
+  <script>
+    const canvas = document.getElementById("matrix-canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const binary = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = new Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(15, 32, 39, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(168, 237, 234, 0.08)";
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = binary[Math.floor(Math.random() * binary.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 80);
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
