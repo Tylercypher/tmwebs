@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me - Profile</title>
+  <style>
+    main {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 3rem;
+      max-width: 1200px;
+      margin: 0;
+      align-items: flex-start;
+    }
+    .section {
+      margin-bottom: 2rem;
+      max-width: 100%;
+    }
+    .section h2 {
+      color: #ffeaa7;
+      margin-bottom: 0.5rem;
+    }
+    header {
+      width: 100%;
+      background: linear-gradient(135deg, #1e1e2f, #32324f);
+      padding: 3rem 0 2rem;
+      text-align: center;
+      color: #e3e3f1;
+      animation: fadeInDown 1.5s ease-in-out;
+    }
+    nav {
+      margin-top: 1rem;
+    }
+    nav a {
+      color: #a8edea;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ffffff;
+    }
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #eaeaea;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .profile-card {
+      background: #1c1f2b;
+      border-radius: 16px;
+      padding: 2rem;
+      width: 360px;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+      
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #444;
+      margin-bottom: 1rem;
+      border: 2px solid #a8edea;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.2rem;
+      color: #a8edea;
+    }
+    p.tagline {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 1.5rem;
+    }
+    .info {
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .info strong {
+      color: #ffeaa7;
+    }
+    .skills {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .skills span {
+      background: #34495e;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <h1 style="font-size: 2.5rem; color: #a8edea; margin: 0 0 1rem;">My e-Profile</h1>
+  <h1 id="typing"></h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="about-profile.html">Profile</a>
+  </nav>
+</header>
+  <canvas id="matrix-canvas"></canvas>
+  
+  <main>
+    <div class="profile-pic" style="margin-top: 2rem;">
+      <img src="images/profile2.JPG" alt="Tyler Mulroony" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />
+    </div>
+
+    <div class="section">
+      <h2>Tyler Mulroony</h2>
+      <p><em>Aspiring IT & Cybersecurity Professional</em></p>
+    </div>
+
+    <div class="section">
+      <h2>About</h2>
+      <p>I'm deeply passionate about technology, especially cybersecurity. I enjoy learning through real-world projects and experimenting with tools like the Raspberry Pi, ESP32, and more.</p>
+      <p><strong>Current Focus:</strong> My current focus is to expand my knowledge using hands-on projects to gain real-world experience and land an IT/Cybersecurity role.</p>
+    </div>
+
+    <div class="section">
+      <h2>Skills</h2>
+      <div class="skills">
+        <span>Troubleshooting</span>
+        <span>Problem Solving</span>
+        <span>TCP</span>
+        <span>VPN</span>
+        <span>Active Directory</span>
+        <span>Cyber Security</span>
+        <span>Networking</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Links</h2>
+      <a href="https://www.linkedin.com/in/tmulroony" target="_blank" style="color: #ffeaa7; display: block; margin-bottom: 0.5rem;">LinkedIn</a>
+      <a href="files/resume.pdf" download style="color: #ffeaa7; display: block;">Download My Resume</a>
+    </div>
+
+    <div class="section">
+      <h2>Work Experience</h2>
+      <p><strong>PC Visions – IT Apprentice</strong><br>Assisted in diagnosing, repairing, and maintaining computers and IT systems for clients, as well as security cameras. Gained hands-on experience with hardware troubleshooting, software installations, and network configurations. Supported the owner in providing technical solutions and enhancing customer satisfaction. Expanded technical skills in PC building, component installation, and system optimization.
+
+</p>
+
+      <p><strong>Passaic County Superintendent of Elections – Technician</strong><br>Maintenance of Election, ESS Machine and Software, Provide technical support on Election Day, Setting up printers, electronic poll books, and wi-fi modules</p>
+    </div>
+
+    <div class="section">
+      <h2>Education</h2>
+      <p><strong>DeVry University</strong><br>Studied Cybersecurity and Information Systems, completed coursework in networking, system security, and ethical hacking.</p>
+    </div>
+
+    <div class="section">
+      <h2>Certifications</h2>
+      <p><strong>CompTIA A+</strong><br></p>
+    </div>
+
+    <div class="section">
+      <h2>Contact</h2>
+      <p><span style="margin-right: 0.5rem;">📧</span><a href="mailto:mulroonyt@gmail.com" style="color: #ffeaa7;">mulroonyt@gmail.com</a></p>
+      <p style="margin-top: 0.5rem;"><span style="margin-right: 0.5rem;">📞</span><span style="color: #ffeaa7;">973-289-5300</span></p>
+    </div>
+    
+    </div>
+  </main>
+  <footer style="width: 100%; background: #000; text-align: center; padding: 1rem; font-size: 0.9rem; color: #aaa;">
+    &copy; 2025 Tyler Mulroony. All rights reserved.
+  </footer>
+  <script>
+    const canvas = document.getElementById("matrix-canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const binary = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = new Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(15, 32, 39, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(168, 237, 234, 0.2)";
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = binary[Math.floor(Math.random() * binary.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 80);
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
